@@ -2,7 +2,7 @@
 	<header>
 		<form action="POST">
 			<input autocomplete="off" type="text" name="input-search" v-model="searchString" />
-			<button @click.prevent="$emit('getInputValue', searchString)">Cerca</button>
+			<button @click.prevent="sendValues">Cerca</button>
 		</form>
 	</header>
 </template>
@@ -16,7 +16,12 @@ export default {
 		};
 	},
 	props: {},
-	methods: {},
+	methods: {
+		sendValues() {
+			this.$emit("getInputValue", this.searchString);
+			this.searchString = "";
+		},
+	},
 	computed: {},
 };
 </script>
