@@ -6,7 +6,7 @@
 </template>
 
 <script>
-// import Axios from "axios";
+import Axios from "axios";
 
 import Header from "./components/Header.vue";
 import Main from "./components/Main.vue";
@@ -23,7 +23,18 @@ export default {
 	methods: {
 		getSearchValue(data) {
 			this.valueToSearch = data;
-			console.log(data);
+			this.getAPIValues();
+		},
+		getAPIValues() {
+			Axios.get("https://api.themoviedb.org/3/search/movie", {
+				params: {
+					api_key: "bb45bf1814ccb1539123af8793f93346",
+					query: this.valueToSearch,
+				},
+			}).then((result) => {
+				this.database = result.data.results;
+				console.log(this.database);
+			});
 		},
 	},
 };
