@@ -1,8 +1,8 @@
 <template>
 	<header>
-		<form action="POST">
+		<form action="">
 			<input autocomplete="off" type="text" name="input-search" v-model="searchString" />
-			<button @click.prevent="sendValues">Cerca</button>
+			<button @click.prevent="sendAndClear">Cerca</button>
 		</form>
 	</header>
 </template>
@@ -17,8 +17,8 @@ export default {
 	},
 	props: {},
 	methods: {
-		sendValues() {
-			this.$emit("getInputValue", this.searchString);
+		sendAndClear() {
+			if (this.searchString !== "") this.$emit("getInputValue", this.searchString);
 			this.searchString = "";
 		},
 	},

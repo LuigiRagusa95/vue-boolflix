@@ -33,7 +33,6 @@ export default {
 				},
 			}).then((result) => {
 				this.database = result.data.results;
-				console.log(this.database);
 			});
 		},
 	},

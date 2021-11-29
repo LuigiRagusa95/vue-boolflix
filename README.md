@@ -1,24 +1,15 @@
 # vue-boolflix
 
-## Project setup
-```
-npm install
-```
+## Milestone 1:
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Creare un layout base con un componente Header contenente un campo di ricerca (una input e un button) in cui poter scrivere completamente o parzialmente il nome di un film. Possiamo, cliccando il bottone, cercare sull’API tutti i film che contengono ciò che ha scritto l’utente.
+Vogliamo dopo la risposta dell’API visualizzare a schermo i seguenti valori per ogni film trovato:
 
-### Compiles and minifies for production
-```
-npm run build
-```
+-  Titolo
+-  Titolo Originale
+-  Lingua
+-  Voto
 
-### Lints and fixes files
-```
-npm run lint
-```
+## Milestone 2:
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Trasformiamo la stringa statica della lingua in una vera e propria bandiera della nazione corrispondente, gestendo il caso in cui non abbiamo la bandiera della nazione ritornata dall’API (le flag non ci sono in FontAwesome).

@@ -1,8 +1,8 @@
 <template>
 	<div class="card">
 		<ul>
-			<li class="title">{{ title }}</li>
-			<li>{{ originalTitle }}</li>
+			<li class="title" v-if="title.toLowerCase() === originalTitle.toLowerCase()">{{ title }}</li>
+			<li class="title" v-else>{{ originalTitle }}</li>
 			<li class="language">
 				<img v-if="changeFlag" :src="require(`../assets/${this.language}.png`)" :alt="language" />
 				<span v-else>{{ language }}</span>
