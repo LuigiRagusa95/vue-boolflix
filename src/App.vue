@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<Header @getInputValue="getSearchValue" />
-		<Main :data="database" />
+		<Main :moviesData="movieDatabase" :seriesData="seriesDatabase" />
 	</div>
 </template>
 
@@ -17,7 +17,9 @@ export default {
 	data() {
 		return {
 			valueToSearch: "",
-			database: null,
+			database: [],
+			movieDatabase: null,
+			seriesDatabase: null,
 		};
 	},
 	methods: {
@@ -31,8 +33,19 @@ export default {
 					api_key: "bb45bf1814ccb1539123af8793f93346",
 					query: this.valueToSearch,
 				},
+			})
+				.then((result) => {
+					this.movieDatabase = result.data.results;
+				})
+				.catch((error) => console.log(error));
+
+			Axios.get("https://api.themoviedb.org/3/search/tv", {
+				params: {
+					api_key: "bb45bf1814ccb1539123af8793f93346",
+					query: this.valueToSearch,
+				},
 			}).then((result) => {
-				this.database = result.data.results;
+				this.seriesDatabase = result.data.results;
 			});
 		},
 	},
