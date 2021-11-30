@@ -13,3 +13,8 @@ Vogliamo dopo la risposta dell’API visualizzare a schermo i seguenti valori pe
 ## Milestone 2:
 
 Trasformiamo la stringa statica della lingua in una vera e propria bandiera della nazione corrispondente, gestendo il caso in cui non abbiamo la bandiera della nazione ritornata dall’API (le flag non ci sono in FontAwesome).
+
+## Milestone 3:
+
+-  Aggiunta serie tv
+-  Aggiunta immagine di copertina
