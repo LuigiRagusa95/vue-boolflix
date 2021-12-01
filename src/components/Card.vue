@@ -4,7 +4,8 @@
 			<li class="content">
 				<div class="cover">
 					<div>
-						<img :src="`https://image.tmdb.org/t/p/w342${imagePath}`" alt="cover_image" />
+						<img v-if="imagePath" :src="`https://image.tmdb.org/t/p/w342${imagePath}`" alt="cover_image" />
+						<img v-else :src="require('../assets/cover.jpg')" alt="cover_image" />
 					</div>
 				</div>
 				<div class="info">
