@@ -20,8 +20,11 @@
 							<img v-for="(star, index) in changeStar" :key="`image-star-filled-${index}`" class="filled" :src="require('../assets/star.svg')" alt="star-image" />
 							<img v-for="(star, index) in 5 - changeStar" :key="`image-star-empty-${index}`" class="empty" :src="require('../assets/star.svg')" alt="star-image" />
 						</div>
-						<div class="overview">
-							<p>{{ overview }}</p>
+						<div class="overview" v-if="overview">
+							<p><strong>Overview: </strong> {{ overview }}</p>
+						</div>
+						<div class="overview" v-else>
+							<p><strong>Overview: </strong> No overview</p>
 						</div>
 					</div>
 				</div>
@@ -114,7 +117,7 @@ export default {
 				line-height: 1.5rem;
 				flex-direction: column;
 				justify-content: center;
-				background-color: rgba(0, 0, 0, 0.8);
+				background-color: rgba(0, 0, 0, 0.9);
 
 				> .info-overlay {
 					padding: 0.25rem;
