@@ -19,8 +19,8 @@
 		</div>
 		<div class="right">
 			<!-- // build a component ↓ -->
-			<div class="search-form">
-				<input ref="inputField" :class="{ visible: isInputVisible }" autocomplete="off" type="text" name="input-search" v-model="searchString" />
+			<div class="search-form" v-clickoutside="handleClickOutside">
+				<input ref="inputField" :class="{ visible: isInputVisible }" autocomplete="off" type="text" name="input-search" v-model="searchString" @keyup.enter="sendAndClear" />
 				<div @click.prevent="sendAndClear" class="button-icon">
 					<ion-icon name="search"></ion-icon>
 				</div>
@@ -58,9 +58,22 @@ export default {
 			this.searchString = "";
 		},
 		showInput() {
-			if (this.searchString === "" && this.isInputVisible === false) this.isInputVisible = true;
-			else this.isInputVisible = false;
+			if (this.searchString === "" && this.isInputVisible === false) {
+				this.isInputVisible = true;
+				this.$refs.inputField.parentElement.style.backgroundColor = `#282828`;
+			} else {
+				this.isInputVisible = false;
+				this.$refs.inputField.parentElement.style.backgroundColor = `transparent`;
+			}
+
 			setTimeout(() => this.$refs.inputField.focus(), 50);
+		},
+		handleClickOutside() {
+			if (this.searchString === "") {
+				this.searchString = "";
+				this.isInputVisible = false;
+				this.$refs.inputField.parentElement.style.backgroundColor = `transparent`;
+			}
 		},
 	},
 	computed: {},
@@ -133,7 +146,10 @@ header {
 			display: flex;
 			margin-right: 1rem;
 			align-items: center;
-			border: 2px solid #757575;
+
+			&:hover {
+				background-color: #282828;
+			}
 
 			> input {
 				border: none;
@@ -206,10 +222,6 @@ header {
 					position: absolute;
 				}
 			}
-		}
-
-		form > * {
-			margin-right: 5px;
 		}
 	}
 }
