@@ -15,7 +15,10 @@
 						<img v-if="changeFlag" :src="require(`../assets/${this.language}.png`)" :alt="language" />
 						<span v-else>{{ language }}</span>
 					</li>
-					<li>Voto: {{ rating }}</li>
+					<li class="stars">
+						<img v-for="(star, index) in changeStar" :key="`image-star-filled-${index}`" class="filled" :src="require('../assets/star.svg')" alt="star-image" />
+						<img v-for="(star, index) in 5 - changeStar" :key="`image-star-empty-${index}`" class="empty" :src="require('../assets/star.svg')" alt="star-image" />
+					</li>
 				</div>
 			</li>
 		</ul>
@@ -41,6 +44,9 @@ export default {
 			if (this.language === "it-IT" || this.language === "it") hasFlag = true;
 			if (this.language === "en-EN" || this.language === "en") hasFlag = true;
 			return hasFlag;
+		},
+		changeStar() {
+			return Math.ceil(this.rating / 2);
 		},
 	},
 };
@@ -99,6 +105,25 @@ export default {
 					> img {
 						width: 100%;
 						object-fit: cover;
+					}
+				}
+
+				.stars {
+					display: flex;
+					align-items: center;
+
+					> img {
+						width: 16px;
+						height: 16px;
+						object-fit: cover;
+
+						&.empty {
+							filter: invert(94%) sepia(9%) saturate(64%) hue-rotate(176deg) brightness(102%) contrast(89%);
+						}
+
+						&.filled {
+							filter: invert(64%) sepia(94%) saturate(2163%) hue-rotate(1deg) brightness(105%) contrast(104%);
+						}
 					}
 				}
 			}
