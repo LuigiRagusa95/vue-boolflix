@@ -3,18 +3,23 @@
 		<h3>Original Netflix</h3>
 		<div class="container-list">
 			<div class="container-slider">
-				<template v-for="(item, index) in getArray">
-					<Card
-						v-show="item.genre_ids.includes(parseInt(selectedGenre)) || selectedGenre == ''"
-						:key="`card-movie-${index}`"
-						:title="item.title || item.name"
-						:language="item.original_language"
-						:rating="item.vote_average"
-						:originalTitle="item.original_title || item.original_name"
-						:imagePath="item.poster_path"
-						:overview="item.overview"
-						:genre="item.genre_ids"
-					/>
+				<template v-if="getArray">
+					<template v-for="(item, index) in getArray">
+						<Card
+							v-show="item.genre_ids.includes(parseInt(selectedGenre)) || selectedGenre == ''"
+							:key="`card-movie-${index}`"
+							:title="item.title || item.name"
+							:language="item.original_language"
+							:rating="item.vote_average"
+							:originalTitle="item.original_title || item.original_name"
+							:imagePath="item.poster_path"
+							:overview="item.overview"
+							:genre="item.genre_ids"
+						/>
+					</template>
+					<template>
+						<span class="info-message">Nessun elemento trovato in questa categoria! Cambia la categoria in alto a destra!</span>
+					</template>
 				</template>
 			</div>
 		</div>
@@ -72,6 +77,14 @@ export default {
 			overflow-x: auto;
 			scrollbar-width: thin;
 		}
+	}
+
+	.info-message {
+		padding: 1rem 0;
+		color: #ffffff;
+		font-size: 1rem;
+		line-height: 1.5rem;
+		letter-spacing: 0.02rem;
 	}
 }
 </style>
