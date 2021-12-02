@@ -30,6 +30,8 @@
 				<ion-icon name="notifications"></ion-icon>
 			</div>
 			<!-- // build a component ↓ -->
+			<FilterMenu :genres="genres" @selectedGenres="getGenresID" />
+			<!-- // build a component ↓ -->
 			<div class="avatar">
 				<a href="#">
 					<div>
@@ -42,15 +44,20 @@
 </template>
 
 <script>
+import FilterMenu from "./FilterMenu.vue";
 export default {
+	components: { FilterMenu },
 	name: "Header",
 	data() {
 		return {
 			searchString: "",
 			isInputVisible: false,
+			selectedGenreID: "",
 		};
 	},
-	props: {},
+	props: {
+		genres: Array,
+	},
 	methods: {
 		sendAndClear() {
 			this.showInput();
@@ -74,6 +81,10 @@ export default {
 				this.isInputVisible = false;
 				this.$refs.inputField.parentElement.style.backgroundColor = `transparent`;
 			}
+		},
+		getGenresID(data) {
+			this.selectedGenreID = data;
+			this.$emit("selectedGenres", this.selectedGenreID);
 		},
 	},
 	computed: {},

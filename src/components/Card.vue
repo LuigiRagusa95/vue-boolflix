@@ -26,6 +26,7 @@
 						<div class="overview" v-else>
 							<p><strong>Overview: </strong> No overview</p>
 						</div>
+						{{ genre }}
 					</div>
 				</div>
 			</li>
@@ -46,6 +47,7 @@ export default {
 		rating: Number,
 		imagePath: String,
 		overview: String,
+		genre: Array,
 	},
 	computed: {
 		changeFlag() {

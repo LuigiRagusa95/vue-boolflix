@@ -4,7 +4,17 @@
 		<div class="container-list">
 			<div class="container-slider">
 				<template v-for="(item, index) in getArray">
-					<Card :key="`card-movie-${index}`" :title="item.title || item.name" :language="item.original_language" :rating="item.vote_average" :originalTitle="item.original_title || item.original_name" :imagePath="item.poster_path" :overview="item.overview" />
+					<Card
+						v-show="item.genre_ids.includes(parseInt(selectedGenre)) || selectedGenre == ''"
+						:key="`card-movie-${index}`"
+						:title="item.title || item.name"
+						:language="item.original_language"
+						:rating="item.vote_average"
+						:originalTitle="item.original_title || item.original_name"
+						:imagePath="item.poster_path"
+						:overview="item.overview"
+						:genre="item.genre_ids"
+					/>
 				</template>
 			</div>
 		</div>
@@ -25,12 +35,15 @@ export default {
 	props: {
 		movies: Array,
 		series: Array,
+		genres: Array,
+		selectedGenre: String,
 	},
 	computed: {
 		getArray() {
 			return [].concat(this.movies, this.series);
 		},
 	},
+	methods: {},
 };
 </script>
 

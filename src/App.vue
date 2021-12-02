@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
-		<Header @getInputValue="getSearchValue" />
-		<Main :moviesData="movieDatabase" :seriesData="seriesDatabase" />
+		<Header @getInputValue="getSearchValue" :genres="genreDatabase" @selectedGenres="getSelectedID" />
+		<Main :moviesData="movieDatabase" :seriesData="seriesDatabase" :genres="genreDatabase" :genreSelected="genreSelected" />
 	</div>
 </template>
 
@@ -20,7 +20,11 @@ export default {
 			database: [],
 			movieDatabase: null,
 			seriesDatabase: null,
+
+			genreSelected: "",
 			genreDatabase: [],
+			genreNames: [],
+			genreIDs: [],
 		};
 	},
 	created() {
@@ -31,6 +35,8 @@ export default {
 			},
 		}).then((result) => {
 			this.genreDatabase = result.data.genres;
+			this.genreDatabase.forEach((gen) => this.genreNames.push(gen.name));
+			this.genreDatabase.forEach((gen) => this.genreIDs.push(gen.id.toString()));
 		});
 	},
 	methods: {
@@ -58,6 +64,9 @@ export default {
 			}).then((result) => {
 				this.seriesDatabase = result.data.results;
 			});
+		},
+		getSelectedID(data) {
+			this.genreSelected = data.toString();
 		},
 	},
 };

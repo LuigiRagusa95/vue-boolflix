@@ -1,7 +1,7 @@
 <template>
 	<main>
 		<template v-if="canRead">
-			<List :movies="moviesData" :series="seriesData" />
+			<List :movies="moviesData" :series="seriesData" :genres="genres" :selectedGenre="genreSelected" />
 		</template>
 	</main>
 </template>
@@ -14,6 +14,8 @@ export default {
 	props: {
 		moviesData: Array,
 		seriesData: Array,
+		genres: Array,
+		genreSelected: String,
 	},
 	computed: {
 		canRead() {
