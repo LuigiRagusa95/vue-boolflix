@@ -26,7 +26,6 @@
 						<div class="overview" v-else>
 							<p><strong>Overview: </strong> No overview</p>
 						</div>
-						{{ genre }}
 					</div>
 				</div>
 			</li>
