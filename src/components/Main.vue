@@ -1,6 +1,6 @@
 <template>
 	<main>
-		<template>
+		<template v-if="canRead">
 			<List :movies="moviesData" :series="seriesData" />
 		</template>
 	</main>
@@ -14,6 +14,11 @@ export default {
 	props: {
 		moviesData: Array,
 		seriesData: Array,
+	},
+	computed: {
+		canRead() {
+			return typeof this.moviesData != undefined && this.moviesData != null && typeof this.seriesData != undefined && this.seriesData != null;
+		},
 	},
 	data() {
 		return {};

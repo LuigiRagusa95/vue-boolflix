@@ -20,7 +20,18 @@ export default {
 			database: [],
 			movieDatabase: null,
 			seriesDatabase: null,
+			genreDatabase: [],
 		};
+	},
+	created() {
+		Axios.get("https://api.themoviedb.org/3/genre/movie/list", {
+			params: {
+				api_key: "bb45bf1814ccb1539123af8793f93346",
+				language: "it-IT",
+			},
+		}).then((result) => {
+			this.genreDatabase = result.data.genres;
+		});
 	},
 	methods: {
 		getSearchValue(data) {
